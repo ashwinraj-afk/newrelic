@@ -2,6 +2,13 @@ const express = require('express');
 const app = express();
 const PORT = 3000;
 
+app.use(function(req, res, next) {
+  res.setHeader(
+    "Access-Control-Allow-Headers", ["newrelic","traceparent","tracestate"]
+   );
+  return next();
+});
+
 app.use(express.json());
 
 app.use(express.static('public'));
